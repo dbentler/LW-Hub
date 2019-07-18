@@ -24,27 +24,27 @@ public class ScoreboardAdapter implements AssembleAdapter {
         toReturn.add("");
         toReturn.add("");
         if (player.hasPermission("rank.default"))  
-        toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank " + ChatColor.GOLD + "Â» "+ ChatColor.RESET + "Default"));
+        toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank " + ChatColor.GOLD + "» "+ ChatColor.RESET + "Default"));
         else if (player.hasPermission("rank.vip"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.YELLOW + "VIP"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.YELLOW + "VIP"));
         else if (player.hasPermission("rank.vip+"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.AQUA + "VIP+"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.AQUA + "VIP+"));
         else if (player.hasPermission("rank.mvp"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.RED + "MVP"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.RED + "MVP"));
         else if (player.hasPermission("rank.noble"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.DARK_AQUA + "Noble"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.DARK_AQUA + "Noble"));
         else if (player.hasPermission("rank.mystic"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.DARK_PURPLE + "Mystic"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.DARK_PURPLE + "Mystic"));
         else if (player.hasPermission("rank.kingpin"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.DARK_GREEN + "Kingpin"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.DARK_GREEN + "Kingpin"));
         else if (player.hasPermission("rank.helper"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.LIGHT_PURPLE + "Helper"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.LIGHT_PURPLE + "Helper"));
         else if (player.hasPermission("rank.moderator"))       	
-            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.BLUE + "Moderator"));
+            toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.BLUE + "Moderator"));
         else if (player.hasPermission("rank.admin"))      	
-        toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.DARK_RED + "Admin"));
+        toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.DARK_RED + "Admin"));
         else if (player.hasPermission("rank.owner"))  
-        toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "Â» " + ChatColor.DARK_RED + "Owner"));
+        toReturn.add(ChatColor.translateAlternateColorCodes('&', "&cRank "+ ChatColor.GOLD + "» " + ChatColor.DARK_RED + "Owner"));
         toReturn.add(ChatColor.translateAlternateColorCodes('&',"&7&m-------------------"));
 		return toReturn;
 	}

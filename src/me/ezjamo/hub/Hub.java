@@ -38,7 +38,9 @@ public class Hub extends JavaPlugin implements PluginMessageListener {
 	}
 
 	public void onDisable() {
-
+		for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+			player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
+					}
 	}
 
 	

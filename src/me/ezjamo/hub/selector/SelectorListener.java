@@ -28,7 +28,7 @@ public class SelectorListener implements Listener {
 	
 	// Server Selector
 	
-	public void selector(Player p) {
+	public static void selector(Player p) {
 	
 	 Inventory selector = Bukkit.getServer().createInventory(null, 45, ChatColor.BLUE + "Server Selector");
 	 ItemStack factions = new ItemStack(Material.DIAMOND_SWORD);

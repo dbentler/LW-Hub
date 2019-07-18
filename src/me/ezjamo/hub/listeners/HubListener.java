@@ -35,8 +35,8 @@ public class HubListener implements Listener {
 		ItemMeta compassMeta = compass.getItemMeta();
 		compassMeta.setDisplayName(ChatColor.DARK_AQUA + "Server Selector");
 		compass.setItemMeta(compassMeta);
-		e.getPlayer().getInventory().setItem(5, compass);
-		e.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 0.5, 101.0, 0.4));
+		e.getPlayer().getInventory().setItem(0, compass);
+		e.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 0.5, 101.0, 0.5));
 		e.setJoinMessage(null);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9000000, 5));
 	}
