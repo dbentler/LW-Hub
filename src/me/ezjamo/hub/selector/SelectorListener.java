@@ -40,7 +40,9 @@ public class SelectorListener implements Listener {
 	 factionsmeta.setDisplayName(ChatColor.GREEN + "Factions");
 	 ArrayList<String> factionslore = new ArrayList<String>();
 	 factionslore.add(ChatColor.RED + "");
-	 factionslore.add(ChatColor.RED + "Join our factions server!");
+	 factionslore.add(ChatColor.translateAlternateColorCodes('&', "&fJoin our &cfactions &fserver!"));
+	 factionslore.add(ChatColor.translateAlternateColorCodes('&', "&fLaunches on &cJuly 19th&f, &c1PM EST"));
+	 factionslore.add(ChatColor.translateAlternateColorCodes('&', "&c$1000 &fIn FTOP Prizes!"));
 	 factionslore.add(ChatColor.RED + "");
 	 factionslore.add(ChatColor.AQUA + String.valueOf(Hub.playerFactions) + ChatColor.RESET + " players online");
 	 factionslore.add(ChatColor.RED + "");
@@ -48,7 +50,7 @@ public class SelectorListener implements Listener {
 	 eventsmeta.setDisplayName(ChatColor.BLUE + "Events");
 	 ArrayList<String> eventslore = new ArrayList<String>();
 	 eventslore.add(ChatColor.RED + "");
-	 eventslore.add(ChatColor.RED + "Join our events server!");
+	 eventslore.add(ChatColor.translateAlternateColorCodes('&', "&fJoin our &cevents &fserver!"));
 	 eventslore.add(ChatColor.RED + "");
 	 eventslore.add(ChatColor.AQUA + String.valueOf(Hub.playerEvents) + ChatColor.RESET + " players online");
 	 eventslore.add(ChatColor.RED + "");
