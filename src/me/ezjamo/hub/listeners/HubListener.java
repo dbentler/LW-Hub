@@ -35,7 +35,7 @@ public class HubListener implements Listener {
 		ItemMeta compassMeta = compass.getItemMeta();
 		compassMeta.setDisplayName(ChatColor.DARK_AQUA + "Server Selector");
 		compass.setItemMeta(compassMeta);
-		e.getPlayer().getInventory().setItem(0, compass);
+		e.getPlayer().getInventory().setItem(4, compass);
 		e.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 0.5, 101.0, 0.5));
 		e.setJoinMessage(null);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9000000, 5));
@@ -43,7 +43,7 @@ public class HubListener implements Listener {
 	
 	@EventHandler 
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
-		if (!e.getPlayer().hasPermission("2fa.use")) {
+		if (!e.getPlayer().hasPermission("mcauthenticator.use")) {
 		e.setCancelled(true);
 		}	
 		else
