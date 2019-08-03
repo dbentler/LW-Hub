@@ -41,8 +41,6 @@ public class SelectorListener implements Listener {
 	 ArrayList<String> factionslore = new ArrayList<String>();
 	 factionslore.add(ChatColor.RED + "");
 	 factionslore.add(ChatColor.translateAlternateColorCodes('&', "&fJoin our &cfactions &fserver!"));
-	 factionslore.add(ChatColor.translateAlternateColorCodes('&', "&fLaunches on &cJuly 19th&f, &c1PM EST"));
-	 factionslore.add(ChatColor.translateAlternateColorCodes('&', "&c$1000 &fIn FTOP Prizes!"));
 	 factionslore.add(ChatColor.RED + "");
 	 factionslore.add(ChatColor.AQUA + String.valueOf(Hub.playerFactions) + ChatColor.RESET + " players online");
 	 factionslore.add(ChatColor.RED + "");

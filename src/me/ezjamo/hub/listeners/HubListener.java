@@ -39,6 +39,7 @@ public class HubListener implements Listener {
 		e.getPlayer().teleport(new Location(Bukkit.getWorld("world"), 0.5, 101.0, 0.5));
 		e.setJoinMessage(null);
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9000000, 5));
+		p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 9000000, 3));
 	}
 	
 	@EventHandler 
