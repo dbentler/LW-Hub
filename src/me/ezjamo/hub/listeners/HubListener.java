@@ -15,6 +15,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.event.world.ChunkUnloadEvent;
@@ -23,6 +24,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import me.ezjamo.hub.selector.SelectorListener;
 import net.md_5.bungee.api.ChatColor;
 
 public class HubListener implements Listener {
@@ -41,11 +43,11 @@ public class HubListener implements Listener {
 		p.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 9000000, 5));
 		p.addPotionEffect(new PotionEffect(PotionEffectType.JUMP, 9000000, 3));
 	}
-	
+
 	@EventHandler 
 	public void onPlayerChat(AsyncPlayerChatEvent e) {
 		if (!e.getPlayer().hasPermission("mcauthenticator.use")) {
-		e.setCancelled(true);
+			e.setCancelled(true);
 		}	
 		else
 			e.setCancelled(false);
@@ -53,10 +55,22 @@ public class HubListener implements Listener {
 	}
 	
 	@EventHandler
+	public void onWaterTouch(PlayerMoveEvent e) {
+		Player p = (Player) e.getPlayer();
+		if (p.getLocation().getBlockY() > 100) {
+			if (e.getPlayer().getLocation().getBlock().getType() == Material.STATIONARY_WATER || e.getPlayer().getLocation().getBlock().getType() == Material.WATER) {
+				Location loc = new Location(p.getWorld(), 0.500, 101, 0.500);
+				p.teleport(loc);
+				SelectorListener.selector(p);
+			}
+		}
+	}
+	
+	@EventHandler
 	public void onChunkunloadEvent(ChunkUnloadEvent e) {
 		e.setCancelled(true);
 	}
-	
+
 	@EventHandler
 	public void onPlayerDropItem(PlayerDropItemEvent e) {
 		e.setCancelled(true);
@@ -74,6 +88,7 @@ public class HubListener implements Listener {
 			e.getEntity().teleport(new Location(Bukkit.getWorld("world"), 0, 101, 0.5));
 		}
 	}
+	
 	@EventHandler
 	public void onDrowning(EntityDamageEvent e) {
 		e.setCancelled(true); 
