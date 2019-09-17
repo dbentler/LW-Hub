@@ -28,6 +28,9 @@ public class DoubleJumpListener implements Listener {
 	@EventHandler
 	public void onLaunch(PlayerToggleFlightEvent e) {
 		Player p = e.getPlayer();
+		if (p.getGameMode() == GameMode.CREATIVE) {
+			return;
+		}
 		e.setCancelled(true);
 		p.setAllowFlight(false);
 		p.setFlying(false);
