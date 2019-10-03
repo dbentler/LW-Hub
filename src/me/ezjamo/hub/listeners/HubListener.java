@@ -31,7 +31,7 @@ public class HubListener implements Listener {
 
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e) {
-		Player p = (Player) e.getPlayer();
+		Player p = e.getPlayer();
 		e.getPlayer().getInventory().clear();
 		ItemStack compass = new ItemStack(Material.COMPASS, 1);
 		ItemMeta compassMeta = compass.getItemMeta();
@@ -56,7 +56,7 @@ public class HubListener implements Listener {
 	
 	@EventHandler
 	public void onWaterTouch(PlayerMoveEvent e) {
-		Player p = (Player) e.getPlayer();
+		Player p = e.getPlayer();
 		if (p.getLocation().getBlockY() > 100) {
 			if (e.getPlayer().getLocation().getBlock().getType() == Material.STATIONARY_WATER || e.getPlayer().getLocation().getBlock().getType() == Material.WATER) {
 				Location loc = new Location(p.getWorld(), 0.500, 101, 0.500);

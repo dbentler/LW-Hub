@@ -1,5 +1,4 @@
-main: me.ezjamo.hub.Hub
-
-author: EzJamo
 name: LW-Hub
+main: me.ezjamo.hub.Hub
+author: EzJamo & DeathRealms
 version: 2.3

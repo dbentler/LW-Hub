@@ -41,7 +41,7 @@ public class DoubleJumpListener implements Listener {
 
 	@EventHandler
 	public void onPlateLaunch(PlayerMoveEvent e) {
-		Player p = (Player) e.getPlayer();
+		Player p = e.getPlayer();
 		if (p.getLocation().getBlock().getType() == Material.GOLD_PLATE) {
 			p.setVelocity(p.getLocation().getDirection().multiply(3.5).setY(1.0));
 			p.playSound(p.getLocation(), Sound.EXPLODE, 1.2f, 1.2f);

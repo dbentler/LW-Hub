@@ -1,7 +1,9 @@
 package me.ezjamo.hub.selector;
 
-import java.util.ArrayList;
-
+import com.google.common.io.ByteArrayDataOutput;
+import com.google.common.io.ByteStreams;
+import me.ezjamo.hub.Hub;
+import me.ezjamo.hub.Utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -15,116 +17,61 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import com.google.common.io.ByteArrayDataOutput;
-import com.google.common.io.ByteStreams;
+public class SelectorListener extends Utils implements Listener {
 
-import me.ezjamo.hub.Hub;
-
-
-
-public class SelectorListener implements Listener {
-	
-	
-	
 	// Server Selector
-	
 	public static void selector(Player p) {
-	
-	 Inventory selector = Bukkit.getServer().createInventory(null, 45, ChatColor.BLUE + "Server Selector");
-	 ItemStack factions = new ItemStack(Material.DIAMOND_SWORD);
-	 ItemStack events = new ItemStack(Material.POTION);
-	 ItemStack build = new ItemStack(Material.LEVER);
-	 ItemMeta factionsmeta = factions.getItemMeta();
-	 ItemMeta eventsmeta = events.getItemMeta();
-	 ItemMeta buildMeta = build.getItemMeta();
-	 factionsmeta.setDisplayName(ChatColor.GREEN + "Factions");
-	 ArrayList<String> factionslore = new ArrayList<String>();
-	 factionslore.add(ChatColor.RED + "");
-	 factionslore.add(ChatColor.translateAlternateColorCodes('&', "&fJoin our &cfactions &fserver!"));
-	 factionslore.add(ChatColor.RED + "");
-	 factionslore.add(ChatColor.AQUA + String.valueOf(Hub.playerFactions) + ChatColor.RESET + " players online");
-	 factionslore.add(ChatColor.RED + "");
-	 factionsmeta.setLore(factionslore);
-	 eventsmeta.setDisplayName(ChatColor.BLUE + "Events");
-	 ArrayList<String> eventslore = new ArrayList<String>();
-	 eventslore.add(ChatColor.RED + "");
-	 eventslore.add(ChatColor.translateAlternateColorCodes('&', "&fJoin our &cevents &fserver!"));
-	 eventslore.add(ChatColor.RED + "");
-	 eventslore.add(ChatColor.AQUA + String.valueOf(Hub.playerEvents) + ChatColor.RESET + " players online");
-	 eventslore.add(ChatColor.RED + "");
-	 eventsmeta.setLore(eventslore);
-	 buildMeta.setDisplayName(ChatColor.DARK_PURPLE + "Build "+ ChatColor.GRAY + "(Whitelisted) ");
-	 factions.setItemMeta(factionsmeta);
-	 events.setItemMeta(eventsmeta);
-	 build.setItemMeta(buildMeta);
-	 selector.setItem(21, factions);
-	 selector.setItem(23, events);
-	 if (p.hasPermission("2fa.use")) {
-		 selector.setItem(44, build);
-	 }
-
-	 p.getPlayer().openInventory(selector);
-	 
+		Inventory inv = Bukkit.getServer().createInventory(null, 45, color("&9Server Selector"));
+		createItem(inv, 276, 1, 21, "&aFactions",
+				"", "&fJoin our &cfactions &fserver!", "", "&b" + Hub.playerFactions + " &fplayers online", "");
+		createItem(inv, 373, 1, 23, "&9Events",
+				"", "&fJoin our &cevents &fserver!", "", "&b" + Hub.playerEvents + " &fplayers online", "");
+		if (p.hasPermission("2fa.use")) {
+			createItem(inv, 69, 1, 44, "&5Build &7(Whitelisted)", "");
+		}
+		p.openInventory(inv);
 	}
-	
+
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event) {
-		
-	    if (event.getAction() == Action.PHYSICAL || event.getItem() == null || event.getItem().getType() == Material.AIR|| (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK))) 
-	    	
-	    	return;
-
-	     ItemStack compass = new ItemStack(Material.COMPASS, 1);
-		 ItemMeta compassMeta = compass.getItemMeta();
-		 compassMeta.setDisplayName(ChatColor.DARK_AQUA + "Server Selector");
-		 compass.setItemMeta(compassMeta);
-		if (event.getItem() != null 
-				&& event.getItem().isSimilar(compass)) {
-				event.setCancelled(true);
-				selector(event.getPlayer()); 
-				}
-			}
-
-	
-@EventHandler
-public void onInventoryClickB(InventoryClickEvent event) {
-	if (!event.getInventory().getName().equalsIgnoreCase(ChatColor.BLUE + "Server Selector")) {
-		
-		return;
-	}
-	
-	Player p = (Player) event.getWhoClicked();
-	event.setCancelled(true);
-	switch(event.getCurrentItem().getType())
-        {
-        case POTION:
-            ByteArrayDataOutput out = ByteStreams.newDataOutput();
-            out.writeUTF("Connect");
-            out.writeUTF("events");
-            p.sendPluginMessage(Hub.instance, "BungeeCord", out.toByteArray());
-            break;
-        default: 
-    		switch(event.getCurrentItem().getType())
-    		{
-    		case DIAMOND_SWORD:
-                ByteArrayDataOutput out2 = ByteStreams.newDataOutput();
-                out2.writeUTF("Connect");
-                out2.writeUTF("factions");
-                p.sendPluginMessage(Hub.instance, "BungeeCord", out2.toByteArray());
-    			break;
-    		default:
-    			switch(event.getCurrentItem().getType())
-    	            {
-    	            case LEVER:
-    	                ByteArrayDataOutput out3 = ByteStreams.newDataOutput();
-    	                out3.writeUTF("Connect");
-    	                out3.writeUTF("build");
-    	                p.sendPluginMessage(Hub.instance, "BungeeCord", out3.toByteArray());
-    	    			break;
-    	            default: 
-    	                break; 
-    	         }
-    		   }
-    		}
+		if (event.getAction() == Action.PHYSICAL || event.getItem() == null || event.getItem().getType() == Material.AIR || (!(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)))
+			return;
+		ItemStack compass = new ItemStack(Material.COMPASS, 1);
+		ItemMeta compassMeta = compass.getItemMeta();
+		compassMeta.setDisplayName(ChatColor.DARK_AQUA + "Server Selector");
+		compass.setItemMeta(compassMeta);
+		if (event.getItem() != null && event.getItem().isSimilar(compass)) {
+			event.setCancelled(true);
+			selector(event.getPlayer());
 		}
 	}
+
+	@EventHandler
+	public void onInventoryClickB(InventoryClickEvent event) {
+		if (!event.getInventory().getName().equalsIgnoreCase(color("&9Server Selector"))) {
+			return;
+		}
+		Player p = (Player) event.getWhoClicked();
+		event.setCancelled(true);
+		if (event.getCurrentItem().getType() == Material.POTION) {
+			ByteArrayDataOutput out = ByteStreams.newDataOutput();
+			out.writeUTF("Connect");
+			out.writeUTF("events");
+			p.sendPluginMessage(Hub.instance, "BungeeCord", out.toByteArray());
+		} else {
+			if (event.getCurrentItem().getType() == Material.DIAMOND_SWORD) {
+				ByteArrayDataOutput out2 = ByteStreams.newDataOutput();
+				out2.writeUTF("Connect");
+				out2.writeUTF("factions");
+				p.sendPluginMessage(Hub.instance, "BungeeCord", out2.toByteArray());
+			} else {
+				if (event.getCurrentItem().getType() == Material.LEVER) {
+					ByteArrayDataOutput out3 = ByteStreams.newDataOutput();
+					out3.writeUTF("Connect");
+					out3.writeUTF("build");
+					p.sendPluginMessage(Hub.instance, "BungeeCord", out3.toByteArray());
+				}
+			}
+		}
+	}
+}

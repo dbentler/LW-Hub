@@ -20,18 +20,11 @@ import me.ezjamo.hub.listeners.BlockedCommandsListener;
 import me.ezjamo.hub.selector.SelectorListener;
 
 public class Hub extends JavaPlugin implements PluginMessageListener {
-
-	
 	public static Hub instance;
 	public static int playerCount = 0;
-	public static int lw1 = 0;
-	public static int lw2 = 0;
 	public static int playerFactions = 0;
 	public static int playerEvents = 0;
-	
 
-	
-	
 	public void onEnable() {
 		instance = this;
 		start();
@@ -40,14 +33,12 @@ public class Hub extends JavaPlugin implements PluginMessageListener {
 	public void onDisable() {
 		for (Player player : Bukkit.getServer().getOnlinePlayers()) {
 			player.setScoreboard(Bukkit.getScoreboardManager().getNewScoreboard());
-					}
+		}
 	}
 
-	
 	public void start() {
-		
 		Assemble assemble = new Assemble(this, new ScoreboardAdapter());
-		assemble.setTicks(19); // <-- dont set this above 20 -jamo
+		assemble.setTicks(19); // <-- don't set this above 20 -jamo
 		assemble.setAssembleStyle(AssembleStyle.LONEWOLVES);         
         Bukkit.getServer().getMessenger().registerIncomingPluginChannel(this, "BungeeCord", this);
         Bukkit.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
@@ -57,11 +48,8 @@ public class Hub extends JavaPlugin implements PluginMessageListener {
 		getServer().getPluginManager().registerEvents(new BlockedCommandsListener(), this);
 		Bukkit.getServer().getWorld("world").setPVP(false);
 		getPlayersCount();
-			
-			
 		}
-	
-	
+
 	public void getPlayersCount() {
 		new BukkitRunnable() {
 			@Override
@@ -72,7 +60,7 @@ public class Hub extends JavaPlugin implements PluginMessageListener {
 			}
 		}.runTaskTimerAsynchronously(this, 22L , 22L);
 	}
-	
+
     public void onPluginMessageReceived(String channel, Player player, byte[] bytemessage) {
         if (!channel.equals("BungeeCord"))
             return;
