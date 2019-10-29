@@ -3,6 +3,7 @@ package me.ezjamo.hub;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
 
+import me.ezjamo.hub.listeners.ToggleVisibilityListener;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -46,6 +47,7 @@ public class Hub extends JavaPlugin implements PluginMessageListener {
 		getServer().getPluginManager().registerEvents(new DoubleJumpListener(), this);
 		getServer().getPluginManager().registerEvents(new SelectorListener(), this);
 		getServer().getPluginManager().registerEvents(new BlockedCommandsListener(), this);
+		getServer().getPluginManager().registerEvents(new ToggleVisibilityListener(), this);
 		Bukkit.getServer().getWorld("world").setPVP(false);
 		getPlayersCount();
 		}

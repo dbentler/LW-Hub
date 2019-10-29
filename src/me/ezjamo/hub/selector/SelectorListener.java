@@ -48,7 +48,7 @@ public class SelectorListener extends Utils implements Listener {
 
 	@EventHandler
 	public void onInventoryClickB(InventoryClickEvent event) {
-		if (!event.getInventory().getName().equalsIgnoreCase(color("&9Server Selector")) || event.getCurrentItem() == null) {
+		if (event.getCurrentItem() == null) {
 			return;
 		}
 		Player p = (Player) event.getWhoClicked();
